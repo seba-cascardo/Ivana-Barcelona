@@ -24,12 +24,14 @@ build de APK Android. Si algo falla, ver sección 6 (troubleshooting).
 | **Android SDK** | API 33+ | ✅ en `C:\Users\seba_\AppData\Local\Android\Sdk` |
 | **Build Tools** | 33+ | ✅ 30.0.3, 35.0.0, 35.0.1, 36.0.0 |
 | **Platforms** | android-33+ | ✅ android-33, android-35 |
-| **Android NDK** | r25c+ | ❌ **NO instalado — falta esto** |
+| **Android NDK** | r25c+ | ✅ r25c (25.2.9519653) — instalado en `D:\android-ndk\android-ndk-r25c\` con junction transparente desde `<SDK>\ndk\25.2.9519653\` |
 | **adb** (platform-tools) | última | ✅ 35.0.2 |
 | **Android Studio** | (opcional, útil) | ✅ instalado |
 
-### Lo único que falta
-**Android NDK**. Instrucciones en sección 2.5.
+### Lo que falta para cerrar Phase 0
+- Validar F5 en Godot con viewport 640×360 (pixel-perfect crisp).
+- Configurar Godot → Editor Settings → Export → Android con paths.
+- Primer build APK debug.
 
 ### Paths para configurar en Godot Editor Settings
 Cuando abras el Editor → `Editor Settings → Export → Android`:
@@ -95,27 +97,47 @@ Opción B — Command-line tools:
    sdkmanager "platforms;android-34" "build-tools;34.0.0" "platform-tools" "ndk;25.2.9519653"
    ```
 
-### 2.5. Instalar Android NDK (falta en esta máquina)
+### 2.5. Instalar Android NDK
 
-Opción A — vía Android Studio (recomendada):
+> **Heads-up sobre disco**: el NDK pesa ~2GB extraído. Si tu C: tiene poco espacio, instalalo en otro drive y hacé junction al path esperado por el SDK (estrategia que usamos en esta máquina porque C: está lleno).
+
+#### Opción A — Android Studio GUI (la más fácil si C: tiene ≥3GB libres)
 1. Abrir Android Studio.
-2. **More Actions** (en welcome screen) → **SDK Manager**, o
-   **Settings → Languages & Frameworks → Android SDK**.
+2. **Settings → Languages & Frameworks → Android SDK** (o **More Actions → SDK Manager** desde welcome).
 3. Tab **SDK Tools** → marcar **NDK (Side by side)**.
-4. Apply → instalar (pesa ~1.5 GB).
+4. Apply → instalar.
 
-Versión recomendada: `r25c` o `r26.x` (compatible con Godot 4.6).
+Versión recomendada: `r25c` (numeric: `25.2.9519653`) — battle-tested con Godot 4.x.
 
-Opción B — vía `sdkmanager` CLI:
-```bash
-"C:\Users\seba_\AppData\Local\Android\Sdk\cmdline-tools\latest\bin\sdkmanager.bat" "ndk;25.2.9519653"
+#### Opción B — CLI vía `sdkmanager` (requiere `JAVA_HOME` seteado)
+```powershell
+$env:JAVA_HOME = "C:\Program Files\Android\Android Studio\jbr"
+$env:PATH = "$env:JAVA_HOME\bin;$env:PATH"
+& "C:\Users\seba_\AppData\Local\Android\Sdk\cmdline-tools\latest\bin\sdkmanager.bat" "ndk;25.2.9519653"
 ```
 
-Verificar instalación:
-```bash
-ls "C:\Users\seba_\AppData\Local\Android\Sdk\ndk"
-# Debería listar la versión instalada (ej. 25.2.9519653/)
-```
+Si C: no tiene espacio, sdkmanager se cortará mid-extract. En ese caso usar Opción C.
+
+#### Opción C — NDK en otro drive + junction (workaround para C: lleno)
+Lo que hicimos en esta máquina:
+1. Descargar NDK directo desde Google a un drive con espacio (ej. D:):
+   ```powershell
+   Invoke-WebRequest -Uri "https://dl.google.com/android/repository/android-ndk-r25c-windows.zip" -OutFile "D:\android-ndk\android-ndk-r25c-windows.zip"
+   Expand-Archive -Path "D:\android-ndk\android-ndk-r25c-windows.zip" -DestinationPath "D:\android-ndk\" -Force
+   ```
+2. Crear junction al path donde el SDK lo espera:
+   ```cmd
+   mklink /J "C:\Users\seba_\AppData\Local\Android\Sdk\ndk\25.2.9519653" "D:\android-ndk\android-ndk-r25c"
+   ```
+3. Verificar:
+   ```bash
+   ls "C:\Users\seba_\AppData\Local\Android\Sdk\ndk"
+   # Debería mostrar: 25.2.9519653 (el junction)
+   cat "C:\Users\seba_\AppData\Local\Android\Sdk\ndk\25.2.9519653\source.properties"
+   # Debería mostrar la versión real
+   ```
+
+Godot, Gradle y sdkmanager ven la junction como si fuera un directorio normal — todo funciona transparente.
 
 ### 2.6. Configurar Godot para Android
 
