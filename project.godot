@@ -11,8 +11,11 @@
 ;   Godot 4 Editor, el editor puede normalizar/agregar campos.
 ; - Pixel-perfect rendering configurado: viewport 640x360, snap-to-pixel,
 ;   filtro Nearest, scale_mode=integer. NO modificar sin entender impacto.
-; - 640x360 escala 3x a 1920x1080, 4x a 2560x1440, 6x a 4K. Sweet spot
-;   para pixel art con diálogos largos tipo Disco Elysium.
+; - 640x360 escala 2x a 1280x720, 3x a 1920x1080, 4x a 2560x1440, 6x a 4K.
+;   Sweet spot para pixel art con diálogos largos tipo Disco Elysium.
+; - window_*_override = 1280x720 (exacto 2x) para que en PC siempre sea
+;   16:9 perfecto sin black bars (1920x1080 no fitea limpio con la taskbar).
+;   En mobile el override se ignora — la app es fullscreen del device.
 
 config_version=5
 
@@ -33,8 +36,8 @@ GameState="*res://scripts/autoloads/game_state.gd"
 
 window/size/viewport_width=640
 window/size/viewport_height=360
-window/size/window_width_override=1920
-window/size/window_height_override=1080
+window/size/window_width_override=1280
+window/size/window_height_override=720
 window/size/resizable=true
 window/stretch/mode="viewport"
 window/stretch/aspect="keep"
