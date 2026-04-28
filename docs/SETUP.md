@@ -8,23 +8,34 @@ build de APK Android. Si algo falla, ver sección 6 (troubleshooting).
 
 ---
 
-## 1. Requisitos
+## 1. Requisitos — estado actual (verificado 2026-04-29)
 
 ### Mínimos (sólo para correr en Windows)
-| Tool | Versión recomendada | Cómo verificar | Status local |
-|---|---|---|---|
-| **Godot 4** | 4.4+ (estable más reciente) | `godot --version` | ❌ no instalado |
-| **Git** | 2.40+ | `git --version` | ✅ 2.49.0 |
-| **Git LFS** | 3.0+ | `git lfs --version` | ❓ verificar |
+| Tool | Versión recomendada | Status local |
+|---|---|---|
+| **Godot 4** | 4.4+ (4.6.2 OK) | ✅ **4.6.2 stable** en `C:\Projects\Ivana Barcelona\Godot_v4.6.2-stable_win64.exe` (portable en root, gitignored) |
+| **Git** | 2.40+ | ✅ 2.49.0 |
+| **Git LFS** | 3.0+ | ✅ inicializado |
 
 ### Adicionales (para build de APK Android)
-| Tool | Versión | Cómo verificar | Status local |
-|---|---|---|---|
-| **JDK 17** | OpenJDK 17 / Temurin 17 | `java -version` | ❌ no instalado |
-| **Android SDK** | API 34 (Android 14) | `sdkmanager --list` | ❌ no instalado |
-| **Android Build Tools** | 34.0.0 | (incluido en SDK) | ❌ |
-| **Android NDK** | r25c o más reciente | (incluido en SDK) | ❌ |
-| **adb** (platform-tools) | última | `adb --version` | ❌ |
+| Tool | Versión | Status local |
+|---|---|---|
+| **JDK** | 17+ (Godot pide 17, JDK 21 funciona en práctica) | ✅ **OpenJDK 21.0.5** bundled en `C:\Program Files\Android\Android Studio\jbr\` |
+| **Android SDK** | API 33+ | ✅ en `C:\Users\seba_\AppData\Local\Android\Sdk` |
+| **Build Tools** | 33+ | ✅ 30.0.3, 35.0.0, 35.0.1, 36.0.0 |
+| **Platforms** | android-33+ | ✅ android-33, android-35 |
+| **Android NDK** | r25c+ | ❌ **NO instalado — falta esto** |
+| **adb** (platform-tools) | última | ✅ 35.0.2 |
+| **Android Studio** | (opcional, útil) | ✅ instalado |
+
+### Lo único que falta
+**Android NDK**. Instrucciones en sección 2.5.
+
+### Paths para configurar en Godot Editor Settings
+Cuando abras el Editor → `Editor Settings → Export → Android`:
+- **Android SDK Path**: `C:\Users\seba_\AppData\Local\Android\Sdk`
+- **Java SDK Path**: `C:\Program Files\Android\Android Studio\jbr`
+- **Debug Keystore**: dejar que Godot genere automático en primer export
 
 ---
 
@@ -84,14 +95,35 @@ Opción B — Command-line tools:
    sdkmanager "platforms;android-34" "build-tools;34.0.0" "platform-tools" "ndk;25.2.9519653"
    ```
 
-### 2.5. Configurar Godot para Android
+### 2.5. Instalar Android NDK (falta en esta máquina)
 
-1. Abrir Godot Editor.
+Opción A — vía Android Studio (recomendada):
+1. Abrir Android Studio.
+2. **More Actions** (en welcome screen) → **SDK Manager**, o
+   **Settings → Languages & Frameworks → Android SDK**.
+3. Tab **SDK Tools** → marcar **NDK (Side by side)**.
+4. Apply → instalar (pesa ~1.5 GB).
+
+Versión recomendada: `r25c` o `r26.x` (compatible con Godot 4.6).
+
+Opción B — vía `sdkmanager` CLI:
+```bash
+"C:\Users\seba_\AppData\Local\Android\Sdk\cmdline-tools\latest\bin\sdkmanager.bat" "ndk;25.2.9519653"
+```
+
+Verificar instalación:
+```bash
+ls "C:\Users\seba_\AppData\Local\Android\Sdk\ndk"
+# Debería listar la versión instalada (ej. 25.2.9519653/)
+```
+
+### 2.6. Configurar Godot para Android
+
+1. Abrir Godot Editor (`Godot_v4.6.2-stable_win64.exe`).
 2. **Editor → Editor Settings → Export → Android**:
-   - **Android SDK Path**: ruta al SDK (ej. `C:\Users\<user>\AppData\Local\Android\Sdk`).
-   - **Debug Keystore**: Godot puede generar uno automático en
-     primer export, o crear manual con keytool.
-   - **Java SDK Path**: dejar vacío (usa `JAVA_HOME`).
+   - **Android SDK Path**: `C:\Users\seba_\AppData\Local\Android\Sdk`
+   - **Java SDK Path**: `C:\Program Files\Android\Android Studio\jbr`
+   - **Debug Keystore**: dejar vacío inicialmente (Godot genera uno automático en primer export).
 
 ---
 

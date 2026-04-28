@@ -1,3 +1,8 @@
+# Godot engine binaries (cada dev usa su propia version local)
+Godot_v*.exe
+Godot_v*.zip
+Godot_v*.app
+
 # Godot 4+ specific ignores
 .godot/
 .import/
