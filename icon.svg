@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128">
+  <!-- Placeholder icon for Ivana Barcelona — to be replaced in Phase 0/1 with real concept art -->
+  <rect width="128" height="128" fill="#1a0e2e"/>
+  <circle cx="64" cy="48" r="22" fill="#e8c170" stroke="#1a0e2e" stroke-width="3"/>
+  <rect x="42" y="68" width="44" height="40" fill="#9a3b3b" stroke="#1a0e2e" stroke-width="3"/>
+  <text x="64" y="120" font-family="monospace" font-size="14" font-weight="bold" fill="#e8c170" text-anchor="middle">IB</text>
+</svg>

@@ -1,0 +1,49 @@
+# Godot 4+ specific ignores
+.godot/
+.import/
+
+# Imported translations (auto-generated from CSV)
+*.translation
+
+# Mono / C# specific (we use GDScript, but just in case)
+.mono/
+data_*/
+mono_crash.*.json
+
+# Build outputs
+/builds/
+/exports/
+*.pck
+*.zip
+*.apk
+*.aab
+
+# Android export keystores and signing config (NEVER commit)
+*.keystore
+*.jks
+android/build/
+ios/build/
+export_presets.cfg.local
+export_credentials.cfg
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*~
+
+# IDE
+.vscode/
+.idea/
+*.code-workspace
+
+# Local environment
+.env
+.env.local
+
+# Logs
+*.log
+
+# Misc
+*.import.bak
