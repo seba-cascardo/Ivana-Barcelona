@@ -9,8 +9,10 @@
 ; Notas:
 ; - Este archivo es un esqueleto inicial. Al abrir por primera vez en
 ;   Godot 4 Editor, el editor puede normalizar/agregar campos.
-; - Pixel-perfect rendering configurado: viewport 480x270, snap-to-pixel,
-;   filtro Nearest. NO modificar sin entender impacto.
+; - Pixel-perfect rendering configurado: viewport 640x360, snap-to-pixel,
+;   filtro Nearest, scale_mode=integer. NO modificar sin entender impacto.
+; - 640x360 escala 3x a 1920x1080, 4x a 2560x1440, 6x a 4K. Sweet spot
+;   para pixel art con diálogos largos tipo Disco Elysium.
 
 config_version=5
 
@@ -29,12 +31,14 @@ GameState="*res://scripts/autoloads/game_state.gd"
 
 [display]
 
-window/size/viewport_width=480
-window/size/viewport_height=270
+window/size/viewport_width=640
+window/size/viewport_height=360
 window/size/window_width_override=1920
 window/size/window_height_override=1080
+window/size/resizable=true
 window/stretch/mode="viewport"
 window/stretch/aspect="keep"
+window/stretch/scale_mode="integer"
 window/handheld/orientation=1
 
 [gui]
