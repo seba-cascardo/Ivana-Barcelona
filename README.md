@@ -5,7 +5,9 @@
 > ciudades, acentos y modismos. Pixel art retro modernizado, narrativa
 > Disco-Elysium-style, gameplay de deducción real.
 
-**Estado del proyecto**: 🌱 *Phase 0 — Cimientos*
+**Estado del proyecto**: ✅ *Phase 0 cerrada (2026-04-29)* · 🚧 *Phase 1 — Vertical Slice (brainstorming creativo)*
+
+Tag de Phase 0: `phase-0-closed`. Ver `docs/SETUP.md` para correr localmente.
 
 ---
 
