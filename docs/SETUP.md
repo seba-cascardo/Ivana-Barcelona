@@ -29,7 +29,7 @@ build de APK Android. Si algo falla, ver sección 6 (troubleshooting).
 | **Android Studio** | (opcional, útil) | ✅ instalado |
 
 ### Lo que falta para cerrar Phase 0
-- Validar F5 en Godot con viewport 640×360 (pixel-perfect crisp).
+- Validar F5 en Godot con viewport 360×640 portrait (pixel-perfect crisp).
 - Configurar Godot → Editor Settings → Export → Android con paths.
 - Primer build APK debug.
 
@@ -188,8 +188,8 @@ Con el proyecto abierto en Godot:
    - Hint: "presioná ESPACIO para verificar pixel-perfect".
 
 **Test pixel-perfect**: presionar ESPACIO toggle un overlay de grilla.
-La grilla debe verse limpia, con cada celda exactamente 4 píxeles de
-pantalla por píxel interno (en 1920×1080 = scale ×4 sobre 480×270).
+La grilla debe verse limpia, con cada celda escalada a integer múltiple
+del píxel interno (en 720×1280 dev window = scale ×2 sobre 360×640).
 
 ### 4.2. Android — APK debug
 

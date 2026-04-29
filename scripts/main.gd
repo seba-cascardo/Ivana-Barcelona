@@ -9,7 +9,7 @@ extends Node2D
 ## Si en algún punto se cambia el viewport en project.godot, actualizar
 ## VIEWPORT_SIZE acá también.
 
-const VIEWPORT_SIZE: Vector2 = Vector2(640, 360)
+const VIEWPORT_SIZE: Vector2 = Vector2(360, 640)
 
 var _grid_visible: bool = false
 var _grid_overlay: ColorRect
@@ -42,7 +42,7 @@ func _make_grid_material() -> ShaderMaterial:
 	shader.code = """
 shader_type canvas_item;
 
-uniform vec2 viewport_size = vec2(640.0, 360.0);
+uniform vec2 viewport_size = vec2(360.0, 640.0);
 
 void fragment() {
 	vec2 px = floor(SCREEN_UV * viewport_size);

@@ -6,16 +6,17 @@
 script = ExtResource("1_main")
 
 [node name="Background" type="ColorRect" parent="."]
-offset_right = 640.0
-offset_bottom = 360.0
+offset_right = 360.0
+offset_bottom = 640.0
 color = Color(0.10, 0.05, 0.18, 1)
 
 [node name="TitleLabel" type="Label" parent="."]
 offset_left = 0.0
-offset_top = 140.0
-offset_right = 640.0
-offset_bottom = 170.0
-text = "IVANA BARCELONA"
+offset_top = 240.0
+offset_right = 360.0
+offset_bottom = 280.0
+text = "IVANA
+BARCELONA"
 horizontal_alignment = 1
 vertical_alignment = 1
 theme_override_colors/font_color = Color(0.91, 0.76, 0.44, 1)
@@ -23,21 +24,21 @@ theme_override_font_sizes/font_size = 24
 
 [node name="SubtitleLabel" type="Label" parent="."]
 offset_left = 0.0
-offset_top = 180.0
-offset_right = 640.0
-offset_bottom = 200.0
+offset_top = 320.0
+offset_right = 360.0
+offset_bottom = 340.0
 text = "Build 0.0.1 — Phase 0 cimientos"
 horizontal_alignment = 1
 vertical_alignment = 1
 theme_override_colors/font_color = Color(0.6, 0.5, 0.4, 1)
-theme_override_font_sizes/font_size = 12
+theme_override_font_sizes/font_size = 11
 
 [node name="HintLabel" type="Label" parent="."]
 offset_left = 0.0
-offset_top = 320.0
-offset_right = 640.0
-offset_bottom = 340.0
-text = "presioná ESPACIO para verificar pixel-perfect"
+offset_top = 600.0
+offset_right = 360.0
+offset_bottom = 620.0
+text = "ESPACIO: pixel-perfect grid"
 horizontal_alignment = 1
 vertical_alignment = 1
 theme_override_colors/font_color = Color(0.4, 0.35, 0.3, 1)
@@ -48,7 +49,7 @@ offset_left = 8.0
 offset_top = 8.0
 offset_right = 200.0
 offset_bottom = 24.0
-text = "viewport 640×360 · stretch=viewport · scale=integer"
+text = "viewport 360×640 portrait"
 horizontal_alignment = 0
 vertical_alignment = 1
 theme_override_colors/font_color = Color(0.35, 0.30, 0.25, 1)

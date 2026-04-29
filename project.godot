@@ -9,13 +9,14 @@
 ; Notas:
 ; - Este archivo es un esqueleto inicial. Al abrir por primera vez en
 ;   Godot 4 Editor, el editor puede normalizar/agregar campos.
-; - Pixel-perfect rendering configurado: viewport 640x360, snap-to-pixel,
-;   filtro Nearest, scale_mode=integer. NO modificar sin entender impacto.
-; - 640x360 escala 2x a 1280x720, 3x a 1920x1080, 4x a 2560x1440, 6x a 4K.
-;   Sweet spot para pixel art con diálogos largos tipo Disco Elysium.
-; - window_*_override = 1280x720 (exacto 2x) para que en PC siempre sea
-;   16:9 perfecto sin black bars (1920x1080 no fitea limpio con la taskbar).
-;   En mobile el override se ignora — la app es fullscreen del device.
+; - Pixel-perfect rendering configurado: viewport 360x640 (PORTRAIT 9:16),
+;   snap-to-pixel, filtro Nearest, scale_mode=integer. NO modificar sin
+;   entender impacto.
+; - Target real: phone-in-hand (portrait). 360x640 escala 3x a 1080x1920
+;   (FHD portrait), 4x a 1440x2560 (QHD portrait). En phones 20:9 modernos
+;   (ej. 1080x2400) hay leve letterbox vertical con aspect=keep.
+; - window_*_override = 720x1280 (exacto 2x) para que en PC dev la ventana
+;   sea portrait y simule el form factor del device. En mobile se ignora.
 
 config_version=5
 
@@ -34,15 +35,15 @@ GameState="*res://scripts/autoloads/game_state.gd"
 
 [display]
 
-window/size/viewport_width=640
-window/size/viewport_height=360
-window/size/window_width_override=1280
-window/size/window_height_override=720
+window/size/viewport_width=360
+window/size/viewport_height=640
+window/size/window_width_override=720
+window/size/window_height_override=1280
 window/size/resizable=true
 window/stretch/mode="viewport"
 window/stretch/aspect="keep"
 window/stretch/scale_mode="integer"
-window/handheld/orientation=1
+window/handheld/orientation="portrait"
 
 [gui]
 

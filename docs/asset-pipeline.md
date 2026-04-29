@@ -22,7 +22,7 @@
 **Tool**: Aseprite (~$20 pago) o LibreSprite (fork OSS gratis).
 
 **Settings recomendados**:
-- New file: 32×48 (personaje), 96×128 (portrait), 480×270 (background).
+- New file: 32×48 (personaje), 96×128 (portrait), 360×640 (background portrait fullscreen) o 360×480 (background con UI de diálogo abajo).
 - Color mode: RGBA.
 - Background: transparent.
 - Pixel ratio: 1:1.

@@ -17,16 +17,24 @@ Referencias clave:
 
 ## 2. Resolución y escalado
 
-- **Viewport interno**: `480 × 270` (16:9).
+- **Viewport interno**: `360 × 640` (9:16 **PORTRAIT**).
 - **Estrategia**: integer scaling, snap-to-pixel, filtro Nearest.
+- **Orientation**: portrait (phone-in-hand, target principal).
 - **Targets de output**:
-  - 1080p phone: scale ×4 → 1920×1080. ✅
-  - 1440p phone: scale ×4 con letterbox o ×5 con leve crop. ⚠️ validar.
-  - PC dev: cualquier ventana, integer scale interno.
+  - 1080×1920 (FHD portrait): scale ×3 → 1080×1920. ✅
+  - 1440×2560 (QHD portrait): scale ×4 → 1440×2560. ✅
+  - 1080×2400 (FHD+ 20:9 portrait): scale ×3 con letterbox vertical leve. ⚠️
+  - PC dev: ventana 720×1280 (2× del viewport), simula form factor del device.
 
-**Por qué 480×270**: balance entre densidad de info (suficiente para
-diálogos + sprites) y "feel" de pixel art clásico. Es la sweet-spot de
-Sea of Stars / Eastward.
+**Por qué portrait 360×640**: target real es phone-in-hand. Toda la UI
+(pasaporte, murder board con pistas apiladas, diálogo con portrait arriba
++ texto abajo) es naturalmente vertical. Carmen Sandiego clásico era
+landscape pero estaba en PC; nosotros somos mobile-first.
+
+**Por qué 360×640 específicamente**: 9:16 puro escala perfecto a phones
+1080p y 1440p. Densidad suficiente para portrait + diálogo legible
+(~40 chars por línea con font 9px), sprites de personajes 32×48 al
+tercio de altura.
 
 ## 3. Palette base
 
@@ -60,8 +68,10 @@ compatible Aseprite).
 - 2-4 expresiones por personaje principal.
 
 ### Backgrounds de ciudad
-- Tamaño base: **480×270 px** (cubre el viewport entero).
-- Composición: foreground + midground + background con parallax.
+- Tamaño base: **360×640 px** (cubre el viewport portrait entero) o
+  **360×480** si la mitad inferior la ocupa la UI de diálogo.
+- Composición: foreground + midground + background con parallax vertical
+  o lateral según escena.
 - Iluminación bakeada en la imagen (no dynamic lights en MVP).
 
 ### UI elements
